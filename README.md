@@ -11,7 +11,7 @@ El nombre del esquema definido en el script DDL es "MovieSystem" y la aplicació
 
 * Compilar el proyecto (mvn clean package)
 
-* Ejecutar el archivo run.sh
+* Ejecutar el archivo run.bat
 
 ### Endpoints
 A continuación se listan algunos de los endpoints más importantes del proyecto.
