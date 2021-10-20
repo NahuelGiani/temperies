@@ -31,7 +31,7 @@ public class Company {
 	@JsonBackReference 
 	@OneToMany(mappedBy = "company")
 	private List<Movie> movies;
-	
+
 	public Integer getId() {
 		return id;
 	}

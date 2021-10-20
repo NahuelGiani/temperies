@@ -12,6 +12,18 @@ public class MovieDTO {
 	private List<ScreenWriterDTO> screenWriters;
 	private CompanyDTO company;
 	private ScriptDTO script;
+	
+
+	public MovieDTO(String name, Short durationInMinutes, Date releaseDate, Double criticReview,
+			 CompanyDTO company, ScriptDTO script) {
+		super();
+		this.name = name;
+		this.durationInMinutes = durationInMinutes;
+		this.releaseDate = releaseDate;
+		this.criticReview = criticReview;
+		this.company = company;
+		this.script = script;
+	}
 
 	public String getName() {
 		return name;

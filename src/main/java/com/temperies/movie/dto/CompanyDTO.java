@@ -7,6 +7,14 @@ public class CompanyDTO {
 	private String address;
 	private Double value;
 
+	public CompanyDTO(Integer id, String name, String address, Double value) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.value = value;
+	}
+
 	public Integer getId() {
 		return id;
 	}
