@@ -7,6 +7,8 @@ Los pasos para poder inicializar la aplicación son los siguientes:
 El nombre del esquema definido en el script DDL es "MovieSystem" y la aplicación usará el usuario y contraseña root/root. 
 (En caso de querer cambiar cualquiera de estas opciones, modificar el application.properties)
 
+* Ejecutar los scripts adjuntos al proyecto. Se encuentran en resources\scripts y tienen una orden de ejecución numerado.
+
 * Compilar el proyecto (mvn clean package)
 
 * Ejecutar el archivo run.sh
