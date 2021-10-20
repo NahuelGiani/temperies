@@ -1,20 +1,19 @@
-# Getting Started
+# Ejercicio técnico para Temperies
 
-### Reference Documentation
-For further reference, please consider the following sections:
+### Documentación
+Los pasos para poder inicializar la aplicación son los siguientes:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.5.5/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.5.5/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.5.5/reference/htmlsingle/#boot-features-developing-web-applications)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.5.5/reference/htmlsingle/#boot-features-jpa-and-spring-data)
+* En primer lugar se debe generar una instancia de MySQL Server en el puerto 3306. 
+El nombre del esquema definido en el script DDL es "MovieSystem" y la aplicación usará el usuario y contraseña root/root. 
+(En caso de querer cambiar cualquiera de estas opciones, modificar el application.properties)
 
-### Guides
-The following guides illustrate how to use some features concretely:
+* Compilar el proyecto (mvn clean package)
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
+* Ejecutar el archivo run.sh
+
+### URL's y endpoints
+A continuación se listan algunas de las url's más importantes para revisar el proyecto.
+
+* El basepath es: http://127.0.0.1:8080/api/v1
+* La aplicación contiene documentación Swagger. Se puede acceder desde: http://127.0.0.1:8080/api/v1/swagger-ui.html
 
