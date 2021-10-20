@@ -77,6 +77,7 @@ public class MovieServiceImpl implements IMovieService {
 	private MovieDTO checkIfMovieExists(Integer id) {
 		Optional<Movie> movie = movieRepository.findById(id);
 		if (movie.isPresent()) {
+			LOGGER.debug("Movie founded: {}", movie.get());
 			return modelMapper.map(movie.get(), MovieDTO.class);
 		} else {
 			LOGGER.error("Movie ID: {} doesn't found", id);

@@ -14,6 +14,7 @@ import com.temperies.movie.dto.CompanyDTO;
 import com.temperies.movie.dto.MovieDTO;
 import com.temperies.movie.error.handling.EntityNotFoundException;
 import com.temperies.movie.jpa.Company;
+import com.temperies.movie.jpa.Movie;
 import com.temperies.movie.repository.CompanyRepository;
 import com.temperies.movie.repository.MovieRepository;
 import com.temperies.movie.service.ICompanyService;
@@ -40,23 +41,23 @@ public class CompanyServiceImpl implements ICompanyService {
 
 	@Override
 	public CompanyDTO findById(Integer id) {
-		Optional<Company> company = companyRepository.findById(id);
-		if (company.isPresent()) {
-			return modelMapper.map(company.get(), CompanyDTO.class);
-		} else {
-			LOGGER.error("Company ID: {} doesn't found", id);
-			throw new EntityNotFoundException("Company ID: " + id + " doesn't found");
-		}
+		return modelMapper.map(checkIfCompanyExists(id), CompanyDTO.class);
 	}
 
 	@Override
 	public List<MovieDTO> findMoviesByCompanyId(Integer id) {
+		Company company = checkIfCompanyExists(id);
+		return movieRepository.findAllByCompany(company)
+				.stream()
+				.map(movie -> modelMapper.map(movie, MovieDTO.class))
+				.collect(Collectors.toList());
+	}
+	
+	private Company checkIfCompanyExists(Integer id) {
 		Optional<Company> company = companyRepository.findById(id);
 		if (company.isPresent()) {
-			return movieRepository.findAllByCompany(company.get())
-					.stream()
-					.map(movie -> modelMapper.map(movie, MovieDTO.class))
-					.collect(Collectors.toList());
+			LOGGER.debug("Company founded: {}", company.get());
+			return company.get();
 		} else {
 			LOGGER.error("Company ID: {} doesn't found", id);
 			throw new EntityNotFoundException("Company ID: " + id + " doesn't found");

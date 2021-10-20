@@ -13,6 +13,7 @@ public class MovieDTO {
 	private CompanyDTO company;
 	private ScriptDTO script;
 	
+	private MovieDTO() { }
 
 	public MovieDTO(String name, Short durationInMinutes, Date releaseDate, Double criticReview,
 			 CompanyDTO company, ScriptDTO script) {

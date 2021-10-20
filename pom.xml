@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.temperies</groupId>
 	<artifactId>movies</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>Movies System</name>
 	<description>Technical exercise for Temperies</description>
 	<properties>

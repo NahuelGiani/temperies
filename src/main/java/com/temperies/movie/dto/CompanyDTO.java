@@ -7,6 +7,8 @@ public class CompanyDTO {
 	private String address;
 	private Double value;
 
+	private CompanyDTO(){}
+	
 	public CompanyDTO(Integer id, String name, String address, Double value) {
 		super();
 		this.id = id;
