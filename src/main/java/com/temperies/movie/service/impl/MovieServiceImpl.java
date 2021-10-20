@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.temperies.movie.dto.MovieDTO;
+import com.temperies.movie.dto.ScreenWriterDTO;
 import com.temperies.movie.dto.ScriptDTO;
 import com.temperies.movie.error.handling.EntityNotFoundException;
 import com.temperies.movie.error.handling.SQLErrorException;
@@ -39,12 +40,25 @@ public class MovieServiceImpl implements IMovieService {
 	
 	@Override
 	public MovieDTO findById(Integer id) {
-		Optional<Movie> movie = movieRepository.findById(id);	
-		if(movie.isPresent()) {
-			return modelMapper.map(movie.get(), MovieDTO.class);
+		return checkIfMovieExists(id);
+	}
+
+	@Override
+	public ScriptDTO findScriptByMovieId(Integer id) {
+		MovieDTO movie = checkIfMovieExists(id);
+		return modelMapper.map(movie.getScript(), ScriptDTO.class);
+	}
+
+	@Override
+	public List<ScreenWriterDTO> findScreenWritersByMovie(Integer id, Integer genderId) {
+		MovieDTO movie = checkIfMovieExists(id);
+		if(genderId != null) {
+			return movie.getScreenWriters()
+				.stream()
+				.filter(screenwriter -> screenwriter.getGender().getId().equals(genderId))
+				.collect(Collectors.toList());
 		} else {
-			LOGGER.error("Movie ID: {} doesn't found", id);
-			throw new EntityNotFoundException("Movie ID: " + id + " doesn't found");  
+			return movie.getScreenWriters();
 		}
 	}
 
@@ -59,15 +73,15 @@ public class MovieServiceImpl implements IMovieService {
 		}
 		return modelMapper.map(newMovie, MovieDTO.class);
 	}
-
-	@Override
-	public ScriptDTO findScriptByMovieId(Integer id) {
+	
+	private MovieDTO checkIfMovieExists(Integer id) {
 		Optional<Movie> movie = movieRepository.findById(id);
 		if (movie.isPresent()) {
-			return modelMapper.map(movie.get().getScript(), ScriptDTO.class);
+			return modelMapper.map(movie.get(), MovieDTO.class);
 		} else {
 			LOGGER.error("Movie ID: {} doesn't found", id);
 			throw new EntityNotFoundException("Movie ID: " + id + " doesn't found");
 		}
 	}
+	
 }

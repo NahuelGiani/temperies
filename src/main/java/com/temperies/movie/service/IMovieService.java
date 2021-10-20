@@ -3,6 +3,7 @@ package com.temperies.movie.service;
 import java.util.List;
 
 import com.temperies.movie.dto.MovieDTO;
+import com.temperies.movie.dto.ScreenWriterDTO;
 import com.temperies.movie.dto.ScriptDTO;
 
 public interface IMovieService {
@@ -14,5 +15,7 @@ public interface IMovieService {
 	public MovieDTO save(MovieDTO movieDTO);
 
 	public ScriptDTO findScriptByMovieId(Integer id);
+
+	public List<ScreenWriterDTO> findScreenWritersByMovie(Integer id, Integer genderId);
 
 }
